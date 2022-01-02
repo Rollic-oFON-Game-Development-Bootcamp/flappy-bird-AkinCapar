@@ -26,7 +26,6 @@ public class Spawner : MonoBehaviour
         if (pipeIndexToSpawn == pipes.Count - 1)
         {
             pipes[pipeIndexToSpawn].gameObject.transform.position = new Vector2(spawnerTransform.position.x, Random.Range(-1f, 3.25f));
-            Debug.Log(pipes[pipeIndexToSpawn].transform.position.y);
             pipeIndexToSpawn++;
             pipeIndexToSpawn = 0;
         }
@@ -34,7 +33,6 @@ public class Spawner : MonoBehaviour
         else
         {
             pipes[pipeIndexToSpawn].gameObject.transform.position = new Vector2(spawnerTransform.position.x, Random.Range(-1f, 3.25f));
-            Debug.Log(pipes[pipeIndexToSpawn].transform.position.y);
             pipeIndexToSpawn++;
         }
         

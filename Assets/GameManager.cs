@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] GameObject startCanvas;
-    [SerializeField] GameObject gameOverCanvas;
-    //[SerializeField] GameObject gameplayCanvas;
+    [SerializeField] private GameObject startCanvas;
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject gameplayCanvas;
+    private int coinCounter = 0;
+    [SerializeField] private TextMeshProUGUI coinCounterText;
 
     private void Awake()
     {
@@ -23,21 +26,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         startCanvas.SetActive(true);
-        //gameplayCanvas.SetActive(false);
+        gameplayCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
+        coinCounterText.text = coinCounter.ToString();
     }
 
     public void PlayGame()
     {
         Time.timeScale = 1f;
         startCanvas.SetActive(false);
-        //gameplayCanvas.SetActive(true);
+        gameplayCanvas.SetActive(true);
     }
 
     public void GameOver()
     {
         Time.timeScale = 0f;
-        //gameplayCanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
     }
 
@@ -46,4 +49,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void CoinCollected()
+    {
+        coinCounter++;
+        coinCounterText.text = coinCounter.ToString();
+    }
 }
