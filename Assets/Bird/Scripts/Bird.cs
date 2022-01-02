@@ -17,6 +17,7 @@ public class Bird : MonoBehaviour
     void Update()
     {
         MakeBirdFly();
+        transform.eulerAngles = new Vector3(0f, 0f, (transform.position.y - 1) * 15);
     }
      
     public void MakeBirdFly()
@@ -24,6 +25,14 @@ public class Bird : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             rbBird.velocity = Vector2.up * velocityAmount;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Pipe")
+        {
+            GameManager.instance.GameOver();
         }
     }
 }
